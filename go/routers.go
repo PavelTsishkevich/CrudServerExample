@@ -43,8 +43,8 @@ func NewRouter() *mux.Router {
 	return router
 }
 
-func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World!")
+func Index(w http.ResponseWriter, _ *http.Request) {
+	_, _ = fmt.Fprintf(w, "Hello World!")
 }
 
 var routes = Routes{
@@ -84,9 +84,9 @@ var routes = Routes{
 	},
 
 	Route{
-		"UpdateClientWithForm",
-		strings.ToUpper("Post"),
-		"/v2/clients/{clientId}",
-		UpdateClientWithForm,
+		"GetClients",
+		strings.ToUpper("Get"),
+		"/v2/clients",
+		GetClients,
 	},
 }

@@ -36,6 +36,21 @@ paths:
       responses:
         "405":
           description: "Invalid input"
+    get:
+      tags:
+        - "client"
+      summary: "Get all clients from the database"
+      description: ""
+      operationId: "getClients"
+      consumes:
+        - "application/json"
+        - "application/xml"
+      produces:
+        - "application/xml"
+        - "application/json"
+      responses:
+        "405":
+          description: "Invalid input"
     put:
       tags:
       - "client"
@@ -90,42 +105,6 @@ paths:
           description: "Invalid ID supplied"
         "404":
           description: "Client not found"
-    post:
-      tags:
-      - "client"
-      summary: "Updates a client in the database with form data"
-      description: ""
-      operationId: "updateClientWithForm"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      - name: "clientId"
-        in: "path"
-        description: "ID of client that needs to be updated"
-        required: true
-        type: "integer"
-        format: "int64"
-        x-exportParamName: "ClientId"
-      - name: "email"
-        in: "formData"
-        description: "Updated email of the client"
-        required: false
-        type: "string"
-        x-exportParamName: "Email"
-        x-optionalDataType: "String"
-      - name: "lastName"
-        in: "formData"
-        description: "Updated lastName of the client"
-        required: false
-        type: "string"
-        x-exportParamName: "LastName"
-        x-optionalDataType: "String"
-      responses:
-        "405":
-          description: "Invalid input"
     delete:
       tags:
       - "client"
