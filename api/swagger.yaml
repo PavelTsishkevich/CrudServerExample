@@ -1,0 +1,182 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a sample server Clients server"
+  version: "1.0.0"
+  title: "Swagger Clients server"
+host: "localhost:8080"
+basePath: "/v2"
+tags:
+- name: "client"
+  description: "Everything about your Clients"
+schemes:
+- "http"
+paths:
+  /clients:
+    post:
+      tags:
+      - "client"
+      summary: "Add a new client to the database"
+      description: ""
+      operationId: "addClient"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Client object that needs to be added to the database"
+        required: true
+        schema:
+          $ref: "#/definitions/Client"
+        x-exportParamName: "Body"
+      responses:
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+      - "client"
+      summary: "Update an existing client"
+      description: ""
+      operationId: "updateClient"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Client object that needs to be added to the database"
+        required: true
+        schema:
+          $ref: "#/definitions/Client"
+        x-exportParamName: "Body"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Client not found"
+        "405":
+          description: "Validation exception"
+  /clients/{clientId}:
+    get:
+      tags:
+      - "client"
+      summary: "Find client by ID"
+      description: "Returns a single client"
+      operationId: "getClientById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "clientId"
+        in: "path"
+        description: "ID of client to return"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Client"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Client not found"
+    post:
+      tags:
+      - "client"
+      summary: "Updates a client in the database with form data"
+      description: ""
+      operationId: "updateClientWithForm"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "clientId"
+        in: "path"
+        description: "ID of client that needs to be updated"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "ClientId"
+      - name: "email"
+        in: "formData"
+        description: "Updated email of the client"
+        required: false
+        type: "string"
+        x-exportParamName: "Email"
+        x-optionalDataType: "String"
+      - name: "lastName"
+        in: "formData"
+        description: "Updated lastName of the client"
+        required: false
+        type: "string"
+        x-exportParamName: "LastName"
+        x-optionalDataType: "String"
+      responses:
+        "405":
+          description: "Invalid input"
+    delete:
+      tags:
+      - "client"
+      summary: "Deletes a client"
+      description: ""
+      operationId: "deleteClient"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+        x-exportParamName: "ApiKey"
+        x-optionalDataType: "String"
+      - name: "clientId"
+        in: "path"
+        description: "Client id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+        x-exportParamName: "ClientId"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Client not found"
+definitions:
+  Client:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      phone:
+        type: "string"
+    xml:
+      name: "Client"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      phone: "phone"
+      id: 0
+      email: "email"
+      username: "username"
