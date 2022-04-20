@@ -7,8 +7,6 @@ type InMemoryClientRepository struct {
 
 func NewInMemoryRepo() *InMemoryClientRepository {
 	repository := InMemoryClientRepository{make(map[int64]*Client), 0}
-	repository.Create(&Client{123, "Micky", "Mik", "First", "xaxa", "123"})
-	repository.Create(&Client{125, "Rrr", "aaa", "First", "xaxa", "123"})
 	return &repository
 }
 
