@@ -10,8 +10,8 @@ type addTest struct {
 }
 
 var addTests = []addTest{
-	{1, &Client{1, "Micky", "Mik", "First", "xaxa", "123"}},
-	{2, &Client{2, "Rrr", "aaa", "First", "xaxa", "123"}},
+	{1, &Client{1, "Micky", "Mik", "First", "email", "123"}},
+	{2, &Client{2, "Rrr", "aaa", "First", "email", "123"}},
 	{3, nil},
 }
 
@@ -42,7 +42,7 @@ func TestCreate(t *testing.T) {
 func TestUpdate(t *testing.T) {
 	repository := getFilledRepository()
 
-	updatedClient := Client{2, "Rrr2", "aaa2", "First2", "xaxa2", "1232"}
+	updatedClient := Client{2, "Rrr2", "aaa2", "First2", "email2", "1232"}
 	repository.Update(&updatedClient)
 
 	if output := repository.FindById(2); output != &updatedClient {
